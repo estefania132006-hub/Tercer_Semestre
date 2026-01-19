@@ -1,0 +1,49 @@
+class Personaje:
+    def __init__(self, nombre, vida):
+        self.nombre = nombre
+        self.vida = vida
+
+    def atacar(self):
+        raise NotImplementedError
+
+    def defender(self):
+        raise NotImplementedError
+
+
+class Guerrero(Personaje):
+    def atacar(self):
+        print(f"{self.nombre} ataca con espada y causa 15 de daño")
+
+    def defender(self):
+        print(f"{self.nombre} se defiende con escudo y reduce 10 de daño")
+
+
+class Mago(Personaje):
+    def atacar(self):
+        print(f"{self.nombre} lanza un hechizo y causa 20 de daño")
+
+    def defender(self):
+        print(f"{self.nombre} usa escudo mágico y reduce 8 de daño")
+
+
+class Arquero(Personaje):
+    def atacar(self):
+        print(f"{self.nombre} dispara una flecha y causa 12 de daño")
+
+    def defender(self):
+        print(f"{self.nombre} esquiva el ataque y reduce 6 de daño")
+
+
+if __name__ == "__main__":
+    guerrero = Guerrero("Thor", 100)
+    mago = Mago("Merlin", 80)
+    arquero = Arquero("Legolas", 90)
+
+    guerrero.atacar()
+    guerrero.defender()
+
+    mago.atacar()
+    mago.defender()
+
+    arquero.atacar()
+    arquero.defender()

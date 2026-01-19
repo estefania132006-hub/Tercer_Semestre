@@ -1,0 +1,29 @@
+from abc import ABC, abstractmethod
+import math
+
+class Figura(ABC):
+    @abstractmethod
+    def calcular_area(self):
+        pass
+
+class Rectangulo(Figura):
+    def __init__(self, base, altura):
+        self.base = base
+        self.altura = altura
+
+    def calcular_area(self):
+        return self.base * self.altura
+
+class Circulo(Figura):
+    def __init__(self, radio):
+        self.radio = radio
+
+    def calcular_area(self):
+        return math.pi * self.radio ** 2
+
+if __name__ == "__main__":
+    rectangulo = Rectangulo(4, 6)
+    circulo = Circulo(3)
+
+    print("Área del rectángulo:", rectangulo.calcular_area())
+    print("Área del círculo:", circulo.calcular_area())

@@ -1,0 +1,45 @@
+class Vehiculo:
+    def calcular_consumo(self):
+        raise NotImplementedError
+
+    def velocidad_maxima(self):
+        raise NotImplementedError
+
+
+class Coche(Vehiculo):
+    def calcular_consumo(self):
+        print("Consumo: 8 L/100km")
+
+    def velocidad_maxima(self):
+        print("Velocidad máxima: 200 km/h")
+
+
+class Motocicleta(Vehiculo):
+    def calcular_consumo(self):
+        print("Consumo: 4 L/100km")
+
+    def velocidad_maxima(self):
+        print("Velocidad máxima: 180 km/h")
+
+
+class Camion(Vehiculo):
+    def calcular_consumo(self):
+        print("Consumo: 25 L/100km")
+
+    def velocidad_maxima(self):
+        print("Velocidad máxima: 120 km/h")
+
+
+if __name__ == "__main__":
+    coche = Coche()
+    moto = Motocicleta()
+    camion = Camion()
+
+    coche.calcular_consumo()
+    coche.velocidad_maxima()
+
+    moto.calcular_consumo()
+    moto.velocidad_maxima()
+
+    camion.calcular_consumo()
+    camion.velocidad_maxima()

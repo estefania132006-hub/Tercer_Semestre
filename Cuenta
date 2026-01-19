@@ -1,0 +1,45 @@
+class Cuenta:
+    def __init__(self, saldo=0):
+        self.saldo = saldo
+
+    def depositar(self, monto):
+        self.saldo += monto
+        print(f"Depósito realizado. Saldo actual: {self.saldo}")
+
+    def retirar(self, monto):
+        if monto <= self.saldo:
+            self.saldo -= monto
+            print(f"Retiro realizado. Saldo actual: {self.saldo}")
+        else:
+            print("Fondos insuficientes")
+
+
+class CuentaAhorro(Cuenta):
+    def aplicar_interes(self, tasa):
+        self.saldo += self.saldo * tasa
+        print(f"Interés aplicado. Saldo actual: {self.saldo}")
+
+
+class CuentaCorriente(Cuenta):
+    def __init__(self, saldo=0, limite_sobregiro=500):
+        super().__init__(saldo)
+        self.limite_sobregiro = limite_sobregiro
+
+    def retirar(self, monto):
+        if monto <= self.saldo + self.limite_sobregiro:
+            self.saldo -= monto
+            print(f"Retiro realizado. Saldo actual: {self.saldo}")
+        else:
+            print("Se excede el límite de sobregiro")
+
+
+if __name__ == "__main__":
+    ahorro = CuentaAhorro(1000)
+    corriente = CuentaCorriente(500)
+
+    ahorro.depositar(200)
+    ahorro.aplicar_interes(0.05)
+    ahorro.retirar(300)
+
+    corriente.retirar(800)
+    corriente.depositar(400)

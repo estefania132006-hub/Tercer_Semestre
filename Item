@@ -1,0 +1,42 @@
+class Item:
+    def __init__(self, titulo):
+        self.titulo = titulo
+        self.prestado = False
+
+    def prestar(self):
+        if not self.prestado:
+            self.prestado = True
+            print(f"{self.titulo} ha sido prestado.")
+        else:
+            print(f"{self.titulo} ya está prestado.")
+
+    def devolver(self):
+        if self.prestado:
+            self.prestado = False
+            print(f"{self.titulo} ha sido devuelto.")
+        else:
+            print(f"{self.titulo} no estaba prestado.")
+
+
+class Libro(Item):
+    pass
+
+
+class Revista(Item):
+    pass
+
+
+class DVD(Item):
+    pass
+
+
+if __name__ == "__main__":
+    libro = Libro("Python Básico")
+    revista = Revista("National Geographic")
+    dvd = DVD("Matrix")
+
+    libro.prestar()
+    libro.devolver()
+    revista.prestar()
+    dvd.prestar()
+    dvd.devolver()
