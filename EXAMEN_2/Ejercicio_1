@@ -1,0 +1,47 @@
+class ValidadorExpresiones:
+
+    def validarExpresion(self, expresion):
+        pila = []
+
+        for caracter in expresion:
+
+            # Símbolos de apertura
+            if caracter in "([{":
+                pila.append(caracter)
+
+            # Símbolos de cierre
+            elif caracter in ")]}":
+                if not pila:
+                    return False
+
+                apertura = pila.pop()
+
+                if not self.esParValido(apertura, caracter):
+                    return False
+
+        return len(pila) == 0
+
+
+    def esParValido(self, apertura, cierre):
+        pares = {
+            '(': ')',
+            '[': ']',
+            '{': '}'
+        }
+        return pares.get(apertura) == cierre
+
+
+if __name__ == "__main__":
+    validador = ValidadorExpresiones()
+
+    while True:
+        expresion = input("Ingrese una expresión matemática: ")
+
+        if validador.validarExpresion(expresion):
+            print("La expresión está BALANCEADA")
+        else:
+            print("La expresión NO está balanceada")
+
+        continuar = input("¿Desea ingresar otra expresión? (s/n): ")
+        if continuar.lower() != 's':
+            break
