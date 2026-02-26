@@ -1,0 +1,70 @@
+class Producto:
+    def __init__(self, nombre, precio, categoria):
+        self.nombre = nombre
+        self.precio = precio
+        self.categoria = categoria
+
+    # Comparable → orden natural por precio
+    def __lt__(self, other):
+        return self.precio < other.precio
+
+    # equals()
+    def __eq__(self, other):
+        if not isinstance(other, Producto):
+            return False
+        return (self.nombre == other.nombre and
+                self.precio == other.precio and
+                self.categoria == other.categoria)
+
+    # hashCode()
+    def __hash__(self):
+        return hash((self.nombre, self.precio, self.categoria))
+
+    def __repr__(self):
+        return f"{self.nombre} - ${self.precio} - {self.categoria}"
+
+
+def main():
+
+    # ArrayList → lista en Python
+    productos = [
+        Producto("Laptop", 1200, "Tecnología"),
+        Producto("Mouse", 25, "Tecnología"),
+        Producto("Silla", 150, "Hogar"),
+        Producto("Cuaderno", 3, "Papelería"),
+        Producto("Audífonos", 80, "Tecnología"),
+        Producto("Laptop", 1200, "Tecnología")  # Duplicado
+    ]
+
+    print("Lista original:")
+    for p in productos:
+        print(p)
+
+    # HashSet → set en Python
+    conjunto_productos = set(productos)
+
+    print("\nProductos en HashSet (sin duplicados):")
+    for p in conjunto_productos:
+        print(p)
+
+    # Orden natural (Comparable → por precio)
+    print("\nOrdenados por precio:")
+    productos_precio = sorted(productos)
+    for p in productos_precio:
+        print(p)
+
+    # Comparator por nombre
+    print("\nOrdenados por nombre:")
+    productos_nombre = sorted(productos, key=lambda p: p.nombre)
+    for p in productos_nombre:
+        print(p)
+
+    # Comparator por categoría
+    print("\nOrdenados por categoría:")
+    productos_categoria = sorted(productos, key=lambda p: p.categoria)
+    for p in productos_categoria:
+        print(p)
+
+
+if __name__ == "__main__":
+    main()
